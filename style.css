@@ -1,0 +1,88 @@
+:root {
+  --bg: #0d0d0d;
+  --surface: #1a1a19;
+  --line: #2c2c2a;
+  --ink: #f0efec;
+  --ink2: #c3c2b7;
+  --muted: #898781;
+  --long: #3987e5;
+  --short: #e66767;
+  --link: #7fb0ef;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink2);
+  font: 17px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+main { max-width: 680px; margin: 0 auto; padding: 64px 16px 96px; }
+
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+h1, h2, h3 { color: var(--ink); line-height: 1.25; font-weight: 650; }
+h1 { font-size: 2rem; margin: 0 0 12px; letter-spacing: -.01em; }
+h2 { font-size: 1.25rem; margin: 48px 0 12px; }
+h3 { font-size: 1.05rem; margin: 28px 0 6px; }
+p { margin: 0 0 16px; }
+strong { color: var(--ink); font-weight: 600; }
+.num { font-variant-numeric: tabular-nums; }
+
+.back { font-size: .9rem; color: var(--muted); }
+.lede { font-size: 1.15rem; color: var(--ink2); }
+.meta { font-size: .85rem; color: var(--muted); margin-bottom: 32px; }
+.links { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: .95rem; margin: 20px 0 0; }
+
+/* project list on the home page */
+.project {
+  display: block; background: var(--surface); border: 1px solid var(--line);
+  border-radius: 10px; padding: 18px 20px; margin: 14px 0; color: var(--ink2);
+}
+.project:hover { border-color: var(--muted); text-decoration: none; }
+.project .t { color: var(--ink); font-weight: 600; font-size: 1.05rem; }
+.project .d { font-size: .95rem; margin-top: 4px; }
+.project .m { font-size: .8rem; color: var(--muted); margin-top: 8px; }
+
+/* findings */
+.finding { border-left: 2px solid var(--line); padding-left: 16px; margin: 0 0 22px; }
+.finding strong { display: block; margin-bottom: 2px; }
+
+figure { margin: 24px 0 32px; }
+figcaption { font-size: .85rem; color: var(--muted); margin-top: 8px; }
+
+table { width: 100%; border-collapse: collapse; font-size: .9rem; font-variant-numeric: tabular-nums; margin: 8px 0 20px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); }
+th { color: var(--muted); font-weight: 500; }
+td { color: var(--ink2); }
+
+ul { padding-left: 20px; margin: 0 0 16px; }
+li { margin-bottom: 6px; }
+
+footer { margin-top: 64px; padding-top: 16px; border-top: 1px solid var(--line); font-size: .85rem; color: var(--muted); }
+
+/* charts (inline SVG, built by scripts/charts.py) */
+.chart { width: 100%; height: auto; display: block; overflow: visible; }
+.chart text { font: 12px system-ui, -apple-system, "Segoe UI", sans-serif; fill: var(--muted); }
+.chart .coin { fill: var(--ink); font-weight: 600; font-size: 13px; }
+.chart .legend text { fill: var(--ink2); }
+.chart .val.unh { fill: var(--ink); font-weight: 600; }
+.chart .val.raw { fill: var(--ink2); }
+.chart .grid { stroke: var(--line); stroke-width: 1; }
+.chart .mid { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.chart .link { stroke: var(--muted); stroke-width: 2; }
+.chart circle.raw { fill: var(--bg); stroke: var(--ink2); stroke-width: 2; }
+.chart circle.unh { fill: var(--short); stroke: var(--bg); stroke-width: 2; }
+.chart .line { fill: none; stroke-width: 2; stroke-linejoin: round; }
+.chart .line.raw { stroke: var(--ink2); stroke-dasharray: 4 3; stroke-width: 1.5; }
+.chart .line.unh { stroke: var(--short); }
+
+@media (max-width: 560px) {
+  body { font-size: 16px; }
+  main { padding-top: 40px; }
+  h1 { font-size: 1.6rem; }
+}
