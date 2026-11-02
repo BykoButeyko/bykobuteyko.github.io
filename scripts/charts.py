@@ -9,7 +9,7 @@ import re, sqlite3, sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-PAGE = Path(__file__).parent.parent / "hyperliquid-whales" / "index.html"
+PAGE = Path(__file__).parent.parent / "research" / "hyperliquid-whales" / "index.html"
 COINS = ["BTC", "ETH", "SOL", "HYPE"]
 LO, HI = 20, 70          # shared y range in %, so the coins compare directly
 
