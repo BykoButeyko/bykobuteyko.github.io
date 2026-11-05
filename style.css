@@ -80,6 +80,7 @@ footer { margin-top: 64px; padding-top: 16px; border-top: 1px solid var(--line);
 .chart .line { fill: none; stroke-width: 2; stroke-linejoin: round; }
 .chart .line.raw { stroke: var(--ink2); stroke-dasharray: 4 3; stroke-width: 1.5; }
 .chart .line.unh { stroke: var(--short); }
+.chart .line.gap { stroke: var(--long); }
 
 @media (max-width: 560px) {
   body { font-size: 16px; }
