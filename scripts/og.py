@@ -1,4 +1,4 @@
-"""Renders the link-preview cards (1200x630) for the home page and the funding and cascade notes.
+"""Renders the link-preview cards (1200x630) for the home page and the funding, cascade and ETF notes.
 The whale note's card comes from render.py.
 
   pip install resvg-py
@@ -12,7 +12,7 @@ import resvg_py
 ROOT = Path(__file__).parent.parent
 W, H = 1200, 630
 BG, SURFACE, LINE, INK, INK2, MUTED = "#0d0d0d", "#1a1a19", "#2c2c2a", "#f0efec", "#c3c2b7", "#898781"
-OK, WIP, LONG = "#4fb286", "#d9a54a", "#3987e5"
+OK, WIP, LONG, SHORT = "#4fb286", "#d9a54a", "#3987e5", "#e66767"
 FONT = "Segoe UI, Arial, sans-serif"
 
 # The pages style their charts with CSS variables; resvg needs plain colors.
@@ -24,12 +24,16 @@ text {{ font-family: {FONT}; }}
 .chart .mid {{ stroke: {MUTED}; stroke-width: 1; stroke-dasharray: 3 3; }}
 .chart .line {{ fill: none; stroke-width: 2; stroke-linejoin: round; }}
 .chart .line.gap {{ stroke: {LONG}; }}
+.chart .bar.flow {{ fill: {LONG}; }}
+.chart .bar.short {{ fill: {SHORT}; }}
+.chart .shade {{ fill: {BG}; opacity: .55; }}
 """
 
 # (status color, status, title) for each research card, as on the home page
 PROJECTS = [
     (OK, "Published", "How much of the whale short is a bet?"),
     (OK, "Published", "Do Hyperliquid longs still pay more than Binance longs?"),
+    (OK, "Published", "How much of the bitcoin ETF bid is a basis trade?"),
     (WIP, "In progress", "When do Hyperliquid liquidations cascade?"),
 ]
 
@@ -64,12 +68,12 @@ def chart(page, name):
 def home():
     body = [text(72, 132, "Byko Buteyko", 68, INK, 700, spacing=-1),
             *lines(72, 186, ["Market research built from raw data:", "positioning, flows and forced selling."], 30, INK2, gap=1.33)]
-    y = 280
+    y = 262
     for color, label, title in PROJECTS:
-        body += [f'<rect x="72" y="{y}" width="{W - 144}" height="76" rx="12" fill="{SURFACE}" stroke="{LINE}"/>',
-                 *status(94, y + 45, color, label), text(278, y + 47, title, 25, INK, 600),
-                 text(W - 100, y + 47, "→", 25, MUTED, anchor="end")]
-        y += 90
+        body += [f'<rect x="72" y="{y}" width="{W - 144}" height="62" rx="12" fill="{SURFACE}" stroke="{LINE}"/>',
+                 *status(94, y + 38, color, label), text(278, y + 40, title, 24, INK, 600),
+                 text(W - 100, y + 40, "→", 24, MUTED, anchor="end")]
+        y += 72
     # the home card carries its own name at the top, so it skips the footer name
     return frame(body).replace(text(72, H - 34, "Byko Buteyko", 22, MUTED), "")
 
@@ -98,8 +102,18 @@ def cascades():
     return frame(body)
 
 
+def etf():
+    vb, inner = chart(ROOT / "research" / "bitcoin-etf-basis" / "index.html", "weekly")
+    body = [*status(72, 96, OK, "Published"),
+            *lines(72, 160, ["How much of the", "bitcoin ETF bid is", "a basis trade?"], 46, INK, 700, gap=1.2),
+            *lines(72, 350, ["For each BTC of ETF inflow in", "2025-26, hedge funds added 0.23 BTC", "of short on CME futures that week."], 23, INK2, gap=1.45),
+            f'<rect x="620" y="60" width="508" height="480" rx="14" fill="{SURFACE}" stroke="{LINE}"/>',
+            f'<svg class="chart" x="644" y="80" width="460" height="430" viewBox="{vb}">{inner}</svg>']
+    return frame(body)
+
+
 CARDS = {"og.png": home, "research/hyperliquid-funding/og.png": funding,
-         "research/hyperliquid-liquidations/og.png": cascades}
+         "research/hyperliquid-liquidations/og.png": cascades, "research/bitcoin-etf-basis/og.png": etf}
 
 if __name__ == "__main__":
     for path, make in CARDS.items():
