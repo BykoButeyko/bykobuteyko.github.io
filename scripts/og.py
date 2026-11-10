@@ -1,5 +1,5 @@
 """Renders the link-preview cards (1200x630) for the home page and the funding, cascade and ETF notes.
-The whale note's card comes from render.py.
+render.py makes the whale note's post images.
 
   pip install resvg-py
   python scripts/og.py
@@ -27,6 +27,12 @@ text {{ font-family: {FONT}; }}
 .chart .bar.flow {{ fill: {LONG}; }}
 .chart .bar.short {{ fill: {SHORT}; }}
 .chart .shade {{ fill: {BG}; opacity: .55; }}
+.chart .legend text {{ fill: {INK2}; }}
+.chart .val.unh {{ fill: {INK}; font-weight: 600; }}
+.chart .val.raw {{ fill: {INK2}; }}
+.chart .link {{ stroke: {MUTED}; stroke-width: 2; }}
+.chart circle.raw {{ fill: {SURFACE}; stroke: {INK2}; stroke-width: 2; }}
+.chart circle.unh {{ fill: {SHORT}; stroke: {SURFACE}; stroke-width: 2; }}
 """
 
 # (status color, status, title) for each research card, as on the home page
@@ -78,6 +84,17 @@ def home():
     return frame(body).replace(text(72, H - 34, "Byko Buteyko", 22, MUTED), "")
 
 
+def whales():
+    vb, inner = chart(ROOT / "research" / "hyperliquid-whales" / "index.html", "shift")
+    body = [*status(72, 96, OK, "Published"),
+            *lines(72, 160, ["How much of the", "whale short", "is a bet?"], 46, INK, 700, gap=1.2),
+            *lines(72, 350, ["Take out market makers, vaults and", "hedged shorts, and HYPE's $1M+", "accounts go from 52% short to 31%."], 23, INK2, gap=1.45),
+            f'<rect x="540" y="120" width="588" height="380" rx="14" fill="{SURFACE}" stroke="{LINE}"/>',
+            f'<svg class="chart" x="556" y="150" width="556" height="280" viewBox="{vb}">{inner}</svg>',
+            text(564, 476, "Short share of $1M+ accounts, raw vs unhedged", 15, MUTED)]
+    return frame(body)
+
+
 def funding():
     vb, inner = chart(ROOT / "research" / "hyperliquid-funding" / "index.html", "gap")
     body = [*status(72, 96, OK, "Published"),
@@ -112,7 +129,7 @@ def etf():
     return frame(body)
 
 
-CARDS = {"og.png": home, "research/hyperliquid-funding/og.png": funding,
+CARDS = {"og.png": home, "research/hyperliquid-whales/og.png": whales, "research/hyperliquid-funding/og.png": funding,
          "research/hyperliquid-liquidations/og.png": cascades, "research/bitcoin-etf-basis/og.png": etf}
 
 if __name__ == "__main__":

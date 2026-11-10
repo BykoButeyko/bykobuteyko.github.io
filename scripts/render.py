@@ -1,5 +1,5 @@
-"""Renders PNGs from the charts on the whales page: the link-preview card (og.png) and
-1200x675 images for posts. Builds one SVG per image and rasterises it with resvg.
+"""Renders PNGs from the charts on the whales page: 1200x675 images for posts
+(the link-preview card comes from og.py). Builds one SVG per image and rasterises it with resvg.
 
   pip install resvg-py
   python scripts/render.py [post_dir]
@@ -61,8 +61,6 @@ def card(w, h, lines, name, top, bottom=40):
 
 
 IMAGES = {
-    "og.png": (1200, 630, 1, [("Hyperliquid · accounts above $1M", 22, MUTED, 400),
-                               ("How much of the whale short is a bet?", 46, INK, 650)], "shift", 70),
     "post-shift.png": (1200, 675, 2, [("Short share of $1M+ accounts: raw vs unhedged", 38, INK, 650),
                                       ("Unhedged = without market makers, vaults, relative-value books", 22, INK2, 400),
                                       ("and shorts hedged with spot or staked coins on Hyperliquid", 22, INK2, 400)], "shift", 70),
@@ -74,7 +72,7 @@ def render(out_dir):
     out_dir.mkdir(parents=True, exist_ok=True)
     for name, (w, h, zoom, lines, ch, top) in IMAGES.items():
         png = resvg_py.svg_to_bytes(svg_string=card(w, h, lines, ch, top), zoom=zoom)
-        dest = (PAGE.parent if name == "og.png" else out_dir) / name
+        dest = out_dir / name
         dest.write_bytes(bytes(png))
         print(dest)
 
