@@ -57,7 +57,7 @@ def card(w, h, lines, name, top, bottom=40):
     out.append(text(64, h - bottom, "Byko Buteyko", 20, MUTED))
     out.append(text(w - 64, h - bottom, "bykobuteyko.com", 20, MUTED, anchor="end"))
     return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}">'
-            f'<style>{STYLE}</style><rect width="{w}" height="{h}" fill="{BG}"/>{"".join(out)}</svg>')
+            f'<style>{STYLE}</style><rect width="{w}" height="{h}" fill="{BG}"/><rect width="{w}" height="6" fill="#4fb286"/>{"".join(out)}</svg>')
 
 
 IMAGES = {
