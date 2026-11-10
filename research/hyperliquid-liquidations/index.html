@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hyperliquid Liquidation Cascades · Byko Buteyko</title>
+<meta name="description" content="A study in progress: how often forced liquidations on Hyperliquid chain into cascades, what comes before one, and how much of the move comes back.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="When do Hyperliquid liquidations cascade?">
+<meta property="og:description" content="A study in progress. I fixed the method before the data came in, and I won't read results until I have 30 separate cascades.">
+<meta property="og:url" content="https://bykobuteyko.com/research/hyperliquid-liquidations/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@BykoButeyko">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<main>
+  <p><a class="back" href="/">← Byko Buteyko</a></p>
+  <h1>When do Hyperliquid liquidations cascade?</h1>
+  <p class="meta">In progress · Data collection started 5 November 2026</p>
+
+  <p class="lede">When price hits a cluster of liquidation levels, each forced sale can push price into the next cluster. I want to know how often that chain reaction happens on BTC, ETH, SOL and HYPE perps, what the market looks like just before it starts, how far price moves, and how much of the move comes back afterwards.</p>
+
+  <div class="links">
+    <a href="https://github.com/BykoButeyko/hyperliquid-liquidation-cascades">Code and full method</a>
+    <a href="/research/hyperliquid-whales/">Whale positioning note</a>
+  </div>
+
+  <h2>No results yet</h2>
+  <p>I have a few days of data, and a few days can't answer these questions. Cascades are rare and they cluster: one bad hour can liquidate traders on all four coins at once, and that counts as one event, not four. I set the bar before collecting anything. I won't look at a single return until I have <span class="num">30</span> separate cascades, and a result has to hold in the first and second half of the sample. At the pace of the first week that takes about three months, so the first results should come around February 2027.</p>
+
+  <h2>What I'm testing</h2>
+  <ul>
+    <li><strong>Frequency.</strong> How often liquidations on one coin chain into a cascade, and how often a cascade spreads to the other coins.</li>
+    <li><strong>Warning signs.</strong> Whether funding, open interest, book depth or the price trend look different in the hour before a cascade than at random times with the same hour of day and volatility.</li>
+    <li><strong>Impact and recovery.</strong> How far price moves during a cascade, and how much of that move reverses over the next 5 minutes to 4 hours.</li>
+    <li><strong>The liquidation map.</strong> Whether the liquidation levels of the ~4,000 large wallets I track in the <a href="/research/hyperliquid-whales/">whale note</a> point to where cascades start and stop.</li>
+  </ul>
+
+  <h2>How I find liquidations for free</h2>
+  <p>Hyperliquid's public trade stream doesn't mark liquidations. The full record sits in archives that bill whoever downloads them, and I chose not to pay. Instead I use a side door: when a market maker fills part of a liquidation, its own fill carries a liquidation tag. The API caps how many accounts one connection can watch at ten, so I watch HLP's liquidator vault and the nine makers that filled the most volume on these four coins. Together they made about a third of maker volume in my check.</p>
+  <p>That gives me exact timestamps for a sample of liquidations, but only a slice of each one's size. Makers also pull quotes when markets move fast, so the slice can shrink right when a cascade runs. I lean on timing and counts, and I report dollar totals only as a lower bound.</p>
+  <p>Next to the liquidations, the collector records 1-second trade flow, funding and open interest every 5 seconds, and book depth within 1% and 2% of mid every 10 seconds. It runs on a small server and has been connected more than 99% of the time.</p>
+
+  <h2>Definitions I fixed in advance</h2>
+  <ul>
+    <li>A cascade is a run of liquidations with gaps of 60 seconds or less, spread over at least 3 oracle price updates, whose size reaches the coin's own 99th percentile over the previous 30 days.</li>
+    <li>A cascade only counts if the same coin had none in the 4 hours before it. Cascades on different coins within 5 minutes form one market event.</li>
+    <li>I compare each cascade with random moments that share its hour of day and volatility level, and I move every threshold up and down to check that a result doesn't depend on one choice.</li>
+  </ul>
+  <p>The code and these definitions are on GitHub with dated commits, so anyone can check that I didn't change them after seeing the numbers.</p>
+
+  <footer>Byko Buteyko</footer>
+</main>
+</body>
+</html>
