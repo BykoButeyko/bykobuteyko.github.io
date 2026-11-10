@@ -13,33 +13,43 @@
 <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-<main>
-  <h1>Byko Buteyko</h1>
-  <p class="lede">I study positioning on Hyperliquid perps. I build the data pipeline myself, then write down what the numbers show and where they stop.</p>
-  <div class="links">
-    <a href="https://whales.bykobuteyko.com">Live whale dashboard</a>
-    <a href="https://github.com/BykoButeyko">GitHub</a>
-    <a href="https://x.com/BykoButeyko">X</a>
-  </div>
+<main class="home">
+  <header class="hero">
+    <p class="kicker">Hyperliquid perps research</p>
+    <h1>Byko Buteyko</h1>
+    <p class="lede">I study positioning on Hyperliquid perps. I build the data pipeline myself, then write down what the numbers show and where they stop.</p>
+    <nav class="cta">
+      <a class="btn primary" href="https://whales.bykobuteyko.com"><span class="live"></span>Live whale dashboard</a>
+      <a class="btn" href="https://github.com/BykoButeyko">GitHub</a>
+      <a class="btn" href="https://x.com/BykoButeyko">X</a>
+    </nav>
+  </header>
 
-  <h2>Research</h2>
+  <h2 class="section">Research</h2>
   <a class="project" href="/research/hyperliquid-whales/">
+    <div class="top"><span class="status done">Published</span><span>November 2026</span></div>
     <div class="t">How much of the whale short is a bet?</div>
     <div class="d">I track ~4,000 large Hyperliquid wallets every 15 minutes and strip out market makers, vaults and hedged shorts. In HYPE, most of the short side turns out to be staking hedges.</div>
-    <div class="m">November 2026 · Python, SQLite, Streamlit</div>
+    <div class="m"><span>Python</span><span>SQLite</span><span>Streamlit</span></div>
   </a>
   <a class="project" href="/research/hyperliquid-funding/">
+    <div class="top"><span class="status done">Published</span><span>November 2026</span></div>
     <div class="t">Do Hyperliquid longs still pay more than Binance longs?</div>
     <div class="d">I compared three and a half years of hourly funding on Hyperliquid, Binance and Bybit. The gap averaged about 6.5% a year, shrank to 1 to 5% in 2026, and now earns about what T-bills pay once you hold both legs.</div>
-    <div class="m">November 2026 · Python, pandas, SQLite</div>
+    <div class="m"><span>Python</span><span>pandas</span><span>SQLite</span></div>
   </a>
   <a class="project" href="/research/hyperliquid-liquidations/">
+    <div class="top"><span class="status wip">In progress</span><span>Since November 2026</span></div>
     <div class="t">When do Hyperliquid liquidations cascade?</div>
     <div class="d">I record trade flow, open interest, funding, book depth and a sample of liquidations on BTC, ETH, SOL and HYPE, then test what comes before a cascade and how much of the move comes back. No results yet. I won't read any until I have 30 separate cascades, which at the current pace takes about three months.</div>
-    <div class="m">In progress since November 2026 · Python, websockets, SQLite</div>
+    <div class="m"><span>Python</span><span>websockets</span><span>SQLite</span></div>
   </a>
 
-  <footer>Byko Buteyko</footer>
+  <footer class="site">
+    <span>Byko Buteyko</span>
+    <a href="https://github.com/BykoButeyko">GitHub</a>
+    <a href="https://x.com/BykoButeyko">X</a>
+  </footer>
 </main>
 </body>
 </html>
