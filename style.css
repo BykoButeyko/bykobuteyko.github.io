@@ -89,9 +89,21 @@ footer { margin-top: 64px; padding-top: 16px; border-top: 1px solid var(--line);
 }
 
 /* glossary */
-.terms { margin: 28px 0 0; border: 1px solid var(--line); border-radius: 8px; padding: 10px 16px; font-size: .9rem; }
-.terms summary { cursor: pointer; color: var(--ink); font-weight: 600; }
-.terms dl { margin: 12px 0 4px; display: grid; grid-template-columns: max-content 1fr; gap: 6px 16px; }
-.terms dt { color: var(--ink); font-weight: 600; }
-.terms dd { margin: 0; }
-@media (max-width: 520px) { .terms dl { grid-template-columns: 1fr; } .terms dd { margin-bottom: 8px; } }
+.terms { margin: 28px 0 0; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; font-size: .9rem; }
+.terms summary {
+  list-style: none; cursor: pointer; padding: 12px 18px; color: var(--ink); font-weight: 600;
+  display: flex; align-items: center; gap: 10px;
+}
+.terms summary::-webkit-details-marker { display: none; }
+.terms summary::before { content: "+"; width: 14px; color: var(--muted); font-weight: 400; }
+.terms[open] summary::before { content: "−"; }
+.terms[open] summary { border-bottom: 1px solid var(--line); }
+.terms dl { margin: 0; padding: 4px 18px 8px; display: grid; grid-template-columns: 9.5em 1fr; }
+.terms dt, .terms dd { margin: 0; padding: 9px 0; border-top: 1px solid var(--line); line-height: 1.5; }
+.terms dt:first-of-type, .terms dt:first-of-type + dd { border-top: 0; }
+.terms dt { color: var(--ink); font-weight: 600; padding-right: 16px; }
+.terms dd { color: var(--ink2); }
+@media (max-width: 520px) {
+  .terms dl { grid-template-columns: 1fr; }
+  .terms dd { border-top: 0; padding-top: 0; }
+}
