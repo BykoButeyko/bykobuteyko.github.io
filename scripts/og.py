@@ -59,7 +59,7 @@ def status(x, y, color, label):
 
 
 def frame(body):
-    out = [f'<rect width="{W}" height="{H}" fill="{BG}"/>', f'<rect width="{W}" height="6" fill="{OK}"/>',
+    out = [f'<rect width="{W}" height="{H}" fill="{BG}"/>', f'<rect width="{W}" height="6" fill="{MUTED}"/>',
            *body, text(72, H - 34, "Byko Buteyko", 22, MUTED), text(W - 72, H - 34, "bykobuteyko.com", 22, MUTED, anchor="end")]
     return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">'
             f'<style>{STYLE}</style>{"".join(out)}</svg>')
