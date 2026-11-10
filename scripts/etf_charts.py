@@ -11,6 +11,8 @@ import pandas as pd
 
 PAGE = Path(__file__).parent.parent / "research" / "bitcoin-etf-basis" / "index.html"
 W, LEFT, RIGHT = 640, 34, 8
+# colors also set as SVG attributes, so the chart renders even with a cached style.css
+FILL = {"flow": "#3987e5", "short": "#e66767"}
 PANELS = [  # column, class, title, y range (thousand BTC), gridlines, height
     ("flow_btc", "flow", "ETF net flow, thousand BTC per week", (-40, 55), (-40, -20, 20, 40), 170),
     ("d_short", "short", "Change in leveraged funds' CME net short, thousand BTC per week", (-17, 17), (-15, -10, -5, 5, 10, 15), 120),
@@ -28,14 +30,14 @@ def svg(w, test_start):
         y = lambda v: oy + (hi - v) / (hi - lo) * h
         out.append(f'<text x="0" y="{top + 12}" class="coin">{title}</text>')
         xs = x(test_start)
-        out.append(f'<rect x="{xs:.1f}" y="{oy}" width="{W - RIGHT - xs:.1f}" height="{h}" class="shade"/>')
+        out.append(f'<rect x="{xs:.1f}" y="{oy}" width="{W - RIGHT - xs:.1f}" height="{h}" class="shade" fill="#0d0d0d" opacity=".55"/>')
         for v in grid:
             out.append(f'<line x1="{LEFT}" x2="{W - RIGHT}" y1="{y(v):.1f}" y2="{y(v):.1f}" class="grid"/>'
                        f'<text x="{LEFT - 6}" y="{y(v) + 4:.1f}" class="tick" text-anchor="end">{v}</text>')
         for t, v in w[col].items():
             v /= 1000
             y0, y1 = sorted((y(0), y(v)))
-            out.append(f'<rect x="{x(t) - bw / 2:.1f}" y="{y0:.1f}" width="{bw:.1f}" height="{max(y1 - y0, 0.5):.1f}" class="bar {cls}"/>')
+            out.append(f'<rect x="{x(t) - bw / 2:.1f}" y="{y0:.1f}" width="{bw:.1f}" height="{max(y1 - y0, 0.5):.1f}" class="bar {cls}" fill="{FILL[cls]}"/>')
         out.append(f'<line x1="{LEFT}" x2="{W - RIGHT}" y1="{y(0):.1f}" y2="{y(0):.1f}" class="mid"/>'
                    f'<text x="{LEFT - 6}" y="{y(0) + 4:.1f}" class="tick" text-anchor="end">0</text>')
         top = oy + h + 26
