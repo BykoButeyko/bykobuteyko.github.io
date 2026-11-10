@@ -30,6 +30,25 @@
     <a href="/research/hyperliquid-liquidations/">Liquidation cascades note</a>
   </div>
 
+  <details class="terms">
+    <summary>Terms used here</summary>
+    <dl>
+      <dt>Whale</dt><dd>Here, an account worth $1M or more on Hyperliquid.</dd>
+      <dt>Notional</dt><dd>Position size times price, in dollars.</dd>
+      <dt>Short share</dt><dd>Short notional divided by long plus short notional. Above 50% means more short than long.</dd>
+      <dt>Raw / unhedged</dt><dd>Raw counts every position. Unhedged drops market makers, vaults, relative-value wallets, and the part of a short covered by spot or staked coins in the same wallet.</dd>
+      <dt>Market maker</dt><dd>Here, a wallet that trades 100 times its account value or more in 30 days.</dd>
+      <dt>Vault</dt><dd>A pooled account on Hyperliquid that a manager trades for depositors.</dd>
+      <dt>Relative value</dt><dd>A wallet whose longs and shorts across all coins nearly offset (|net| / gross below 0.3).</dd>
+      <dt>Directional</dt><dd>Every wallet not in the three groups above.</dd>
+      <dt>Staking</dt><dd>Locking HYPE to help secure the network in exchange for a yield.</dd>
+      <dt>Open interest</dt><dd>The total size of open positions in a coin.</dd>
+      <dt>Coverage</dt><dd>Tracked notional as a share of both sides of open interest.</dd>
+      <dt>bps</dt><dd>Basis points. 100 bps = 1%.</dd>
+      <dt>p-value</dt><dd>How often random timestamps produce a result at least this strong. Small means chance is an unlikely explanation.</dd>
+    </dl>
+  </details>
+
   <h2>What I found</h2>
 
   <div class="finding">

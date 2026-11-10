@@ -87,3 +87,11 @@ footer { margin-top: 64px; padding-top: 16px; border-top: 1px solid var(--line);
   main { padding-top: 40px; }
   h1 { font-size: 1.6rem; }
 }
+
+/* glossary */
+.terms { margin: 28px 0 0; border: 1px solid var(--line); border-radius: 8px; padding: 10px 16px; font-size: .9rem; }
+.terms summary { cursor: pointer; color: var(--ink); font-weight: 600; }
+.terms dl { margin: 12px 0 4px; display: grid; grid-template-columns: max-content 1fr; gap: 6px 16px; }
+.terms dt { color: var(--ink); font-weight: 600; }
+.terms dd { margin: 0; }
+@media (max-width: 520px) { .terms dl { grid-template-columns: 1fr; } .terms dd { margin-bottom: 8px; } }

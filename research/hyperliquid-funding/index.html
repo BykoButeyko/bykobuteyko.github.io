@@ -19,12 +19,32 @@
   <h1>Do Hyperliquid longs still pay more than Binance longs?</h1>
   <p class="meta">November 2026 · Funding data from May 2023 to November 2026</p>
 
-  <p class="lede">Hyperliquid perps settle funding every hour, Binance and Bybit every 8 hours. If one venue charges longs more for weeks on end, you can short there, go long on the other venue, stay flat on price and collect the difference. I measured how big that difference has been for BTC, ETH, SOL and HYPE, how long it lasts, and how much of it survives fees and margin.</p>
+  <p class="lede">Perpetual futures use funding, a payment between longs and shorts, to stay close to spot. Hyperliquid settles it every hour, Binance and Bybit every 8 hours. If one venue charges longs more for weeks on end, you can short there, go long on the other venue, stay flat on price and collect the difference. I measured how big that difference has been for BTC, ETH, SOL and HYPE, how long it lasts, and how much of it survives fees and margin.</p>
 
   <div class="links">
     <a href="https://github.com/BykoButeyko/hyperliquid-funding-gap">Code and full method</a>
     <a href="/research/hyperliquid-whales/">Whale positioning note</a>
   </div>
+
+  <details class="terms">
+    <summary>Terms used here</summary>
+    <dl>
+      <dt>Perp</dt><dd>Perpetual future: a futures contract with no expiry. Funding keeps its price close to spot.</dd>
+      <dt>Funding</dt><dd>A periodic payment between longs and shorts. When the perp trades above spot, longs pay shorts. Quoted here as % a year.</dd>
+      <dt>Interest term</dt><dd>The fixed part every venue adds to funding, 0.01% per 8 hours (about 11% a year). It cancels in the comparison.</dd>
+      <dt>Gap</dt><dd>Hyperliquid funding minus Binance or Bybit funding for the same coin and hour, annualised.</dd>
+      <dt>Legs</dt><dd>The two positions of the trade: short the perp on the venue that charges longs more, long the same coin on the other.</dd>
+      <dt>CEX</dt><dd>Centralised exchange, here Binance and Bybit.</dd>
+      <dt>bps</dt><dd>Basis points. 100 bps = 1%.</dd>
+      <dt>Taker / maker</dt><dd>A taker order fills at once against the book and pays the higher fee. A maker order rests in the book and pays less.</dd>
+      <dt>Slippage</dt><dd>How much worse than the best quote an order of a given size fills, because it eats through several price levels.</dd>
+      <dt>Half-life</dt><dd>How long it takes a gap to lose half of its distance from its normal level.</dd>
+      <dt>95% interval</dt><dd>The range of values for the true average that the data supports, at 95% confidence.</dd>
+      <dt>Block bootstrap</dt><dd>Resampling the data in 30-day chunks instead of single days, so the intervals keep the fact that the gap stays high or low for weeks.</dd>
+      <dt>Mark price</dt><dd>The price a venue uses to value positions and trigger liquidations.</dd>
+      <dt>T-bill</dt><dd>3-month US Treasury bill, the usual risk-free benchmark.</dd>
+    </dl>
+  </details>
 
   <h2>What I found</h2>
 

@@ -26,6 +26,22 @@
     <a href="/research/hyperliquid-whales/">Whale positioning note</a>
   </div>
 
+  <details class="terms">
+    <summary>Terms used here</summary>
+    <dl>
+      <dt>Liquidation</dt><dd>The exchange closing a position by force once losses eat through its margin.</dd>
+      <dt>Cascade</dt><dd>Liquidations that push price far enough to trigger more liquidations. The exact rule is below.</dd>
+      <dt>Market maker</dt><dd>A trader who keeps buy and sell orders in the book and earns the spread. When one fills part of a liquidation, its fill carries a liquidation tag.</dd>
+      <dt>HLP</dt><dd>Hyperliquid's own vault. Its liquidator account takes over positions the book can't absorb.</dd>
+      <dt>Open interest</dt><dd>The total size of open positions in a coin.</dd>
+      <dt>Book depth</dt><dd>How much is bid and offered within a given distance of the mid price.</dd>
+      <dt>Mid price</dt><dd>The midpoint between the best bid and the best ask.</dd>
+      <dt>Oracle price</dt><dd>The reference price Hyperliquid builds from major exchanges.</dd>
+      <dt>99th percentile</dt><dd>A size bigger than 99% of past observations for that coin.</dd>
+      <dt>Volatility</dt><dd>How much price moves over a period. I compare cascades only with random moments of similar volatility.</dd>
+    </dl>
+  </details>
+
   <h2>No results yet</h2>
   <p>I have a few days of data, and a few days can't answer these questions. Cascades are rare and they cluster: one bad hour can liquidate traders on all four coins at once, and that counts as one event, not four. I set the bar before collecting anything. I won't look at a single return until I have <span class="num">30</span> separate cascades, and a result has to hold in the first and second half of the sample. At the pace of the first week that takes about three months, so the first results should come around February 2027.</p>
 
