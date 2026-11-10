@@ -7,7 +7,7 @@
 <meta name="description" content="How far Hyperliquid perp funding runs above Binance and Bybit for BTC, ETH, SOL and HYPE, how long a gap lasts, and what is left after costs.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Do Hyperliquid longs still pay more than Binance longs?">
-<meta property="og:description" content="From 2023 to 2026, Hyperliquid funding ran about 6.5% a year above Binance and Bybit. In 2026 the gap sits at 1 to 4%.">
+<meta property="og:description" content="From 2023 to 2026, Hyperliquid funding ran about 6.5% a year above Binance and Bybit. In 2026 the gap sits at 1 to 5%.">
 <meta property="og:url" content="https://bykobuteyko.com/research/hyperliquid-funding/">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:creator" content="@BykoButeyko">
@@ -30,7 +30,7 @@
 
   <div class="finding">
     <strong>Hyperliquid longs have paid more, and the interest term doesn't explain it.</strong>
-    All three venues add a fixed 0.01% per 8 hours to funding, about 11% a year. Hyperliquid longs pay it at rest, and so do Binance and Bybit longs, so it cancels when you compare them. What is left is a gap of <span class="num">6.6%</span> a year for BTC, <span class="num">6.7%</span> for ETH and <span class="num">7.0%</span> for SOL against Binance over the whole span. Bybit gives almost the same numbers.
+    All three venues add a fixed 0.01% per 8 hours to funding, about 11% a year. Hyperliquid longs pay it at rest, and so do Binance and Bybit longs, so it cancels when you compare them. What is left is a gap of <span class="num">6.6%</span> a year for BTC, <span class="num">6.7%</span> for ETH and <span class="num">7.0%</span> for SOL against Binance over the whole span. Bybit gives similar numbers for BTC and ETH (6.4% and 6.7%), lower for SOL (5.8%) and higher for HYPE.
   </div>
 
   <div class="finding">
@@ -45,7 +45,7 @@
 
   <div class="finding">
     <strong>Spikes fade within a day; the base level moves slowly.</strong>
-    A gap halves in about <span class="num">15 to 19</span> hours for BTC, ETH and SOL, and in <span class="num">5</span> for HYPE against Binance. A rule that waits for a settled 8-hour gap above 40% a year and leaves when it flips kept <span class="num">1.2 to 2.8%</span> a year after taker fees. Holding the position the whole time earned about <span class="num">7%</span>, because the gap stayed on one side most of the time.
+    A gap halves in about <span class="num">15 to 19</span> hours for BTC, ETH and SOL, and in <span class="num">5</span> for HYPE against Binance. The best of three entry thresholds I tried waits for a settled 8-hour gap above 40% a year and leaves when it flips. It kept <span class="num">1.2 to 2.8%</span> a year after taker fees against Binance and <span class="num">0.6 to 1.7%</span> against Bybit. Lower thresholds lost money after fees. Holding the position the whole time earned about <span class="num">7%</span>, because the gap stayed on one side most of the time. That's slightly above the gap itself, since the position grew with price.
   </div>
 
   <div class="finding">
@@ -55,7 +55,7 @@
 
   <div class="finding">
     <strong>In 2026 the trade earns about what T-bills pay.</strong>
-    At 2x per leg the return on capital equals the gap: 1 to 4% a year in 2026, at or below the 3.6 to 3.8% that 3-month US Treasury bills paid over the same months. The money was in late 2023 and 2024.
+    At 2x per leg the return on capital equals the gap: 1 to 5% a year in 2026 (BTC 2.3%, ETH 3.8%, SOL 1.2%, HYPE 4.7%), against the 3.6 to 3.8% that 3-month US Treasury bills paid over the same months. BTC and SOL earned less than T-bills, ETH about the same, and HYPE more. The money was in late 2023 and 2024.
   </div>
 
   <table>
@@ -68,15 +68,15 @@
     <tr><td>Collateral transfers needed</td><td>7</td><td>20</td><td>33</td><td>11</td></tr>
     <tr><td>Trade only the spikes, taker fills, % a year</td><td>1.3</td><td>1.2</td><td>2.8</td><td>−3.1</td></tr>
   </table>
-  <p>HYPE data starts in May 2025 on Binance, so its numbers cover a shorter stretch. For BTC and SOL the gap runs wider in volatile weeks: SOL averaged 8% a year in the calmest third of weeks and 19% in the most volatile third. ETH shows no such pattern.</p>
+  <p>HYPE data starts in May 2025 on Binance, so its numbers cover a shorter stretch. For BTC and SOL the gap runs wider in volatile weeks: SOL's absolute gap averaged 8% a year in the calmest third of 8-hour blocks (ranked by trailing 7-day volatility) and 19% in the most volatile third. ETH shows no such pattern.</p>
 
   <h2>How I measured it</h2>
 
   <h3>Putting three venues on one clock</h3>
-  <p>Hyperliquid settled every 8 hours until June 2023 and every hour since. Binance moved HYPE to 4 hours and SOL briefly to 2 hours during the FTX collapse. I read each payment's interval from the time since the venue's previous settlement and spread the payment evenly over those hours. Every venue then has a rate for every hour, and I compare the same hours on each side. Comparing Hyperliquid's latest hourly print against the last 8-hour CEX print would mix one hour against eight.</p>
+  <p>Hyperliquid settled every 8 hours until June 2023 and every hour since. Binance moved HYPE to 4 hours and SOL briefly to 2 hours during the FTX collapse, before the period I compare. I read each payment's interval from the time since the venue's previous settlement and spread the payment evenly over those hours. Every venue then has a rate for every hour, and I compare the same hours on each side. Comparing Hyperliquid's latest hourly print against the last 8-hour CEX print would mix one hour against eight.</p>
 
   <h3>Costs</h3>
-  <p>Base-tier fees: Hyperliquid 0.045% taker and 0.015% maker, Binance 0.05% and 0.02%, Bybit 0.055% and 0.02%. A taker round trip on both legs costs 20 to 25 bps once I add slippage from order book snapshots at $100k per leg. The price gap between Hyperliquid and the CEXs on hourly closes stays within 2 to 6 bps, small next to the fees.</p>
+  <p>Base-tier fees: Hyperliquid 0.045% taker and 0.015% maker, Binance 0.05% and 0.02%, Bybit 0.055% and 0.02%. A taker round trip on both legs costs 20 to 25 bps for BTC, ETH and SOL and 30 to 32 bps for HYPE once I add slippage from order book snapshots at $100k per leg. The price gap between Hyperliquid and the CEXs on hourly closes has a standard deviation of 2 to 6 bps over the last seven months, small next to the fees.</p>
 
   <h3>Persistence and uncertainty</h3>
   <p>I fit the half-life on 8-hour blocks, because CEX rates sit flat inside each 8-hour window and hourly data would overstate persistence. The intervals come from a block bootstrap on daily means with 30-day blocks. The gap stays high or low for weeks at a time, and treating every day as independent would make the intervals look tighter than they are.</p>
