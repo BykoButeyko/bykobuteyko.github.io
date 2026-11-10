@@ -12,7 +12,7 @@ import resvg_py
 ROOT = Path(__file__).parent.parent
 W, H = 1200, 630
 BG, SURFACE, LINE, INK, INK2, MUTED = "#0d0d0d", "#1a1a19", "#2c2c2a", "#f0efec", "#c3c2b7", "#898781"
-OK, WIP, LINK, LONG = "#4fb286", "#d9a54a", "#7fb0ef", "#3987e5"
+OK, WIP, LONG = "#4fb286", "#d9a54a", "#3987e5"
 FONT = "Segoe UI, Arial, sans-serif"
 
 # The pages style their charts with CSS variables; resvg needs plain colors.
@@ -49,7 +49,7 @@ def status(x, y, color, label):
 
 
 def frame(body):
-    out = [f'<rect width="{W}" height="{H}" fill="{BG}"/>', f'<rect width="{W}" height="6" fill="{LINK}"/>',
+    out = [f'<rect width="{W}" height="{H}" fill="{BG}"/>',
            *body, text(72, H - 34, "Byko Buteyko", 22, MUTED), text(W - 72, H - 34, "bykobuteyko.com", 22, MUTED, anchor="end")]
     return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">'
             f'<style>{STYLE}</style>{"".join(out)}</svg>')
