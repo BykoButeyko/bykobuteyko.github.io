@@ -88,7 +88,7 @@ def whales():
     vb, inner = chart(ROOT / "research" / "hyperliquid-whales" / "index.html", "shift")
     body = [*status(72, 96, OK, "Published"),
             *lines(72, 160, ["How much of the", "whale short", "is a bet?"], 46, INK, 700, gap=1.2),
-            *lines(72, 350, ["Take out market makers, vaults and", "hedged shorts, and HYPE's $1M+", "accounts go from 52% short to 31%."], 23, INK2, gap=1.45),
+            *lines(72, 350, ["Take out market makers, vaults and", "hedged shorts, and HYPE's $1M+", "accounts go from 51% short to 26%."], 23, INK2, gap=1.45),
             f'<rect x="540" y="120" width="588" height="380" rx="14" fill="{SURFACE}" stroke="{LINE}"/>',
             f'<svg class="chart" x="556" y="150" width="556" height="280" viewBox="{vb}">{inner}</svg>',
             text(564, 476, "Short share of $1M+ accounts, raw vs unhedged", 15, MUTED)]
