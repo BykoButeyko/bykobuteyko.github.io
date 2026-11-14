@@ -69,6 +69,11 @@
     The clearest pattern runs the other way. A 10% bitcoin gain in one week raised the next week's issuance score by about 0.6 in 2024-26 (p&nbsp;=&nbsp;0.006), and the week three back mattered too. Bitcoin's last three weekly returns explain 11% of the swings in issuance. Big mints come after rallies. My guess at why, which I haven't tested: demand for stablecoins to trade with rises once prices are already moving.
   </div>
 
+  <figure>
+    <!-- chart:event --><svg class="chart" viewBox="0 0 640 300" role="img" aria-label="Average bitcoin price path from ten days before to ten days after days when USDT and USDC supply rose by more than one billion dollars, 2024 to 2026"><text x="0" y="12" class="coin">Bitcoin price around a $1bn+ mint day, % vs. end of that day</text><line x1="34" x2="632" y1="241.8" y2="241.8" class="grid" stroke="#2c2c2a"/><text x="28" y="245.8" class="tick" text-anchor="end">-6</text><line x1="34" x2="632" y1="201.5" y2="201.5" class="grid" stroke="#2c2c2a"/><text x="28" y="205.5" class="tick" text-anchor="end">-4</text><line x1="34" x2="632" y1="161.1" y2="161.1" class="grid" stroke="#2c2c2a"/><text x="28" y="165.1" class="tick" text-anchor="end">-2</text><line x1="34" x2="632" y1="80.4" y2="80.4" class="grid" stroke="#2c2c2a"/><text x="28" y="84.4" class="tick" text-anchor="end">2</text><line x1="34" x2="632" y1="40.0" y2="40.0" class="grid" stroke="#2c2c2a"/><text x="28" y="44.0" class="tick" text-anchor="end">4</text><polygon points="34.0,108.2 63.9,113.6 93.8,120.1 123.7,113.4 153.6,116.0 183.5,114.0 213.4,120.6 243.3,141.4 273.2,120.2 303.1,120.2 333.0,120.7 362.9,114.1 392.8,95.3 422.7,87.3 452.6,85.6 482.5,89.4 512.4,77.2 542.3,53.7 572.2,65.1 602.1,49.7 632.0,62.7 632.0,169.9 602.1,162.2 572.2,179.5 542.3,163.3 512.4,162.6 482.5,163.8 452.6,154.5 422.7,146.9 392.8,145.8 362.9,144.6 333.0,120.7 303.1,166.5 273.2,184.5 243.3,219.5 213.4,213.4 183.5,215.0 153.6,227.5 123.7,223.1 93.8,251.3 63.9,252.6 34.0,251.3" fill="#3987e5" opacity=".16"/><line x1="34" x2="632" y1="120.7" y2="120.7" class="mid" stroke="#898781" stroke-dasharray="3 3"/><text x="28" y="124.7" class="tick" text-anchor="end">0</text><line x1="333.0" x2="333.0" y1="40" y2="262" stroke="#e66767" stroke-width="1.5"/><text x="339.0" y="52" class="val" fill="#f0efec">mint day</text><polyline points="34.0,180.1 63.9,182.5 93.8,184.3 123.7,168.6 153.6,172.3 183.5,164.9 213.4,167.5 243.3,181.2 273.2,153.1 303.1,145.1 333.0,120.7 362.9,128.7 392.8,122.1 422.7,117.7 452.6,120.2 482.5,126.6 512.4,121.3 542.3,113.9 572.2,127.2 602.1,112.6 632.0,120.8" fill="none" stroke="#3987e5" stroke-width="2" stroke-linejoin="round"/><text x="34.0" y="280" class="tick" text-anchor="middle">-10</text><text x="93.8" y="280" class="tick" text-anchor="middle">-8</text><text x="153.6" y="280" class="tick" text-anchor="middle">-6</text><text x="213.4" y="280" class="tick" text-anchor="middle">-4</text><text x="273.2" y="280" class="tick" text-anchor="middle">-2</text><text x="333.0" y="280" class="tick" text-anchor="middle">0</text><text x="392.8" y="280" class="tick" text-anchor="middle">+2</text><text x="452.6" y="280" class="tick" text-anchor="middle">+4</text><text x="512.4" y="280" class="tick" text-anchor="middle">+6</text><text x="572.2" y="280" class="tick" text-anchor="middle">+8</text><text x="632.0" y="280" class="tick" text-anchor="middle">+10</text><text x="333.0" y="296" class="tick" text-anchor="middle">days from the mint day (24 mint days, 2024-26; band: 95%)</text></svg><!-- /chart:event -->
+    <figcaption>Days when USDT plus USDC supply rose by more than $1bn in 2024-26. A mint day within seven days after an earlier one is skipped. Bitcoin climbed about 3% in the days before, almost all of it in the last three, and went nowhere after. The band comes from resampling the mint days.</figcaption>
+  </figure>
+
   <div class="finding">
     <strong>My prediction got the verdict right and the size wrong.</strong>
     Before the test I wrote that the hypothesis would fail, with a gap between -1 and +1 points. It failed, at -2.3. I expected issuance to follow price, and it did.
@@ -99,12 +104,45 @@
   <h3>Checks</h3>
   <p>I listed seven variants before the test. None turned the result positive and significant: USDT alone, USDC alone, a top 20% cut, a raw dollar threshold, smoothed supply, Coinbase prices instead of Binance, and no one-day gap. The last one matters as a warning. Moving the return window by a day takes the gap from -2.3 to +0.1 points. Twenty weeks of bitcoin returns, with a weekly swing of about 6.7%, are that noisy, so I read the negative sign as noise too.</p>
 
+  <h2>Eleven more ways to look at it</h2>
+  <p>A single failed test can fail for dull reasons: a bad data source, the wrong horizon, the wrong coins. So after the verdict I listed eleven more checks, committed the list, and only then ran them. With eleven tries one can pass by luck, so I adjusted the p-values for the number of tries (Holm's method). None of the eleven passes after that adjustment.</p>
+
+  <table>
+    <tr><th>Check</th><th>Result</th><th>Adjusted p</th></tr>
+    <tr><td>Supply from CoinMetrics instead of DefiLlama</td><td>-0.7 points</td><td>1.00</td></tr>
+    <tr><td>Return over the next two weeks</td><td>-1.9 points</td><td>1.00</td></tr>
+    <tr><td>Return over the next four weeks</td><td>-1.1 points</td><td>1.00</td></tr>
+    <tr><td>Straight-line slope instead of a top-10% cut</td><td>about zero</td><td>1.00</td></tr>
+    <tr><td>All weeks 2021-26, training years included</td><td>+0.8 points</td><td>1.00</td></tr>
+    <tr><td>Heavy redemption weeks, expected to be weaker</td><td>-2.4 points</td><td>0.54</td></tr>
+    <tr><td>Daily issuance against the return two days later</td><td>small, positive</td><td>0.08</td></tr>
+    <tr><td>All stablecoins, not just USDT and USDC</td><td>-1.4 points</td><td>1.00</td></tr>
+    <tr><td>The week after a $1bn+ mint day</td><td>-0.3 points</td><td>1.00</td></tr>
+    <tr><td>Heavy weeks in up-trends against down-trends</td><td>-1.2 points</td><td>1.00</td></tr>
+    <tr><td>Ether instead of bitcoin</td><td>-1.7 points</td><td>1.00</td></tr>
+  </table>
+
+  <div class="finding">
+    <strong>The data source isn't the problem.</strong>
+    CoinMetrics counts all tokens outstanding, Tether's treasury stock included. Its weekly growth correlates with DefiLlama's at 0.81, and the two agree on 95% of weeks about which ones belong in the top 10%.
+  </div>
+
+  <div class="finding">
+    <strong>The daily result came closest, and I don't believe it.</strong>
+    Daily issuance predicted the return two days later with an unadjusted p of 0.007. I ran more checks after seeing that, so they are post-hoc and labelled that way in the repository. The effect exists only at that exact offset: start the return a day earlier or a day later and it falls to almost nothing. It has the wrong sign in 2021-23 and comes from 2024 alone. Money arriving in the market wouldn't care about one particular day's offset. Chance can produce that pattern.
+  </div>
+
+  <div class="finding">
+    <strong>The test really covers 2024 and 2025.</strong>
+    The heavy weeks split 14 in 2024 and 6 in 2025. None in 2026 reached the threshold, because combined USDT and USDC supply has drifted down from about $263bn in January to $245bn.
+  </div>
+
   <h2>What this can't see</h2>
   <ul>
     <li>Small effects. With 20 heavy weeks against 128, the test reliably detects only gaps of about 3.5 to 4 points a week. The strong version of the story fails. An edge of half a point a week would not show up here either way.</li>
     <li>Where the new tokens go. A mint that lands on an exchange and one that sits in a lending pool look the same in supply totals.</li>
-    <li>Other stablecoins. USDe, USDS, DAI and newer coins grow differently, some of them through crypto collateral rather than dollar deposits. I left them out on purpose.</li>
-    <li>Faster horizons. Issuance might lead price by hours, which weekly data can't resolve.</li>
+    <li>Other stablecoins, one by one. USDe, USDS, DAI and newer coins grow differently, some of them through crypto collateral rather than dollar deposits. Adding them all to the total changed nothing, but I didn't test them separately.</li>
+    <li>Hours. Issuance might lead price within a day, which daily snapshots can't resolve.</li>
   </ul>
   <p>This describes past supply and prices. It is not a recommendation to trade them.</p>
 

@@ -1,6 +1,6 @@
 """Builds the chart on the stablecoin issuance page from the stablecoin-flows repo (run its fetch.py first).
 
-The SVG goes between <!-- chart:deciles --> and <!-- /chart:deciles --> in the page.
+The SVGs go between <!-- chart:deciles --> / <!-- chart:event --> and their closing markers in the page.
 
   python scripts/stablecoin_charts.py path/to/stablecoin-flows
 """
@@ -56,6 +56,47 @@ def svg(m_tr, lo_tr, hi_tr, m_te, lo_te, hi_te):
             f'by decile of weekly stablecoin issuance: 2021-23 training and 2024-26 test">{"".join(out)}</svg>')
 
 
+def svg_event(mean, lo, hi, n):
+    """Bitcoin price around >$1bn mint days, % vs end of mint day, with 95% band."""
+    h, top, bottom, ylo, yhi = 300, 40, 262, -7, 4
+    x = lambda k: LEFT + (k + 10) / 20 * (W - LEFT - RIGHT)
+    y = lambda v: top + (yhi - v) / (yhi - ylo) * (bottom - top)
+    out = [f'<text x="0" y="12" class="coin">Bitcoin price around a $1bn+ mint day, % vs. end of that day</text>']
+    for v in (-6, -4, -2, 2, 4):
+        out.append(f'<line x1="{LEFT}" x2="{W - RIGHT}" y1="{y(v):.1f}" y2="{y(v):.1f}" class="grid" stroke="#2c2c2a"/>'
+                   f'<text x="{LEFT - 6}" y="{y(v) + 4:.1f}" class="tick" text-anchor="end">{v}</text>')
+    ks = range(-10, 11)
+    band = [f"{x(k):.1f},{y(v):.1f}" for k, v in zip(ks, hi)] + [f"{x(k):.1f},{y(v):.1f}" for k, v in reversed(list(zip(ks, lo)))]
+    out.append(f'<polygon points="{" ".join(band)}" fill="{BAND}" opacity=".16"/>')
+    out.append(f'<line x1="{LEFT}" x2="{W - RIGHT}" y1="{y(0):.1f}" y2="{y(0):.1f}" class="mid" stroke="#898781" stroke-dasharray="3 3"/>'
+               f'<text x="{LEFT - 6}" y="{y(0) + 4:.1f}" class="tick" text-anchor="end">0</text>')
+    out.append(f'<line x1="{x(0):.1f}" x2="{x(0):.1f}" y1="{top}" y2="{bottom}" stroke="{TEST}" stroke-width="1.5"/>'
+               f'<text x="{x(0) + 6:.1f}" y="{top + 12}" class="val" fill="#f0efec">mint day</text>')
+    pts = " ".join(f"{x(k):.1f},{y(v):.1f}" for k, v in zip(ks, mean))
+    out.append(f'<polyline points="{pts}" fill="none" stroke="{TRAIN}" stroke-width="2" stroke-linejoin="round"/>')
+    for k in range(-10, 11, 2):
+        out.append(f'<text x="{x(k):.1f}" y="{bottom + 18}" class="tick" text-anchor="middle">{k:+d}</text>'.replace("+0<", "0<"))
+    out.append(f'<text x="{(LEFT + W - RIGHT) / 2:.1f}" y="{bottom + 34}" class="tick" text-anchor="middle">days from the mint day ({n} mint days, 2024-26; band: 95%)</text>')
+    return (f'<svg class="chart" viewBox="0 0 {W} {h}" role="img" aria-label="Average bitcoin price path from ten days before to ten days '
+            f'after days when USDT and USDC supply rose by more than one billion dollars, 2024 to 2026">{"".join(out)}</svg>')
+
+
+def event_data():
+    import numpy as np
+    import pandas as pd
+    import build
+    from explore import daily_frame, event_paths, mint_events
+    p = build.prices("binance")
+    d = daily_frame(build.combined_supply(), p)
+    ev = mint_events(d)
+    ev = ev[(ev >= build.TEST_START) & (ev + pd.Timedelta(days=11) <= p.index.max())]
+    paths = 100 * event_paths(np.log(p), ev)
+    rng = np.random.default_rng(0)
+    boots = np.array([paths[rng.integers(0, len(paths), len(paths))].mean(axis=0) for _ in range(10_000)])
+    lo, hi = np.percentile(boots, [2.5, 97.5], axis=0)
+    return paths.mean(axis=0), lo, hi, len(ev)
+
+
 if __name__ == "__main__":
     repo = Path(sys.argv[1]).resolve()
     sys.path.insert(0, str(repo))
@@ -67,5 +108,8 @@ if __name__ == "__main__":
     html = PAGE.read_text(encoding="utf-8")
     html = re.sub(r"<!-- chart:deciles -->.*?<!-- /chart:deciles -->",
                   lambda m: f"<!-- chart:deciles -->{chart}<!-- /chart:deciles -->", html, flags=re.S)
+    ev_chart = svg_event(*event_data())
+    html = re.sub(r"<!-- chart:event -->.*?<!-- /chart:event -->",
+                  lambda m: f"<!-- chart:event -->{ev_chart}<!-- /chart:event -->", html, flags=re.S)
     PAGE.write_text(html, encoding="utf-8")
     print(len(train), "training weeks,", len(test), "test weeks, last", test.index.max().date())
