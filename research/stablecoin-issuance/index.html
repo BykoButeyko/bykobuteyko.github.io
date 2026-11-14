@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stablecoin Issuance and Bitcoin Returns · Byko Buteyko</title>
+<meta name="description" content="Does a week of heavy USDT and USDC issuance predict bitcoin's return the next week? Tested on 2024-26 data with hypotheses fixed in advance.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Does a big week of stablecoin issuance predict bitcoin's next week?">
+<meta property="og:description" content="In the 20 weeks of 2024-26 with the heaviest USDT and USDC issuance, bitcoin fell 1.7% on average the week after. Big mints followed rallies; they did not predict them.">
+<meta property="og:url" content="https://bykobuteyko.com/research/stablecoin-issuance/">
+<meta property="og:image" content="https://bykobuteyko.com/research/stablecoin-issuance/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@BykoButeyko">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<main>
+  <p><a class="back" href="/">← Byko Buteyko</a></p>
+  <h1>Does a big week of stablecoin issuance predict bitcoin's next week?</h1>
+  <p class="meta">November 2026 · Weekly data from January 2021 to November 2026</p>
+
+  <p class="lede">A familiar line in crypto goes like this: when Tether and Circle mint billions of new USDT and USDC, fresh dollars are sitting on exchanges waiting to buy, so bitcoin is about to go up. The supply figures are public and free. If the story held, anyone could trade on it. I fixed a test in advance and ran it on 2024 to 2026.</p>
+
+  <div class="links">
+    <a href="https://github.com/BykoButeyko/stablecoin-flows">Code and full method</a>
+    <a href="/research/bitcoin-etf-basis/">Bitcoin ETF basis note</a>
+  </div>
+
+  <details class="terms">
+    <summary>Terms used here</summary>
+    <dl>
+      <dt>Stablecoin</dt><dd>A token meant to stay worth one dollar. USDT (Tether) and USDC (Circle) are the two largest, together about $245bn in November 2026.</dd>
+      <dt>Issuance</dt><dd>New tokens put into circulation when someone deposits dollars with the issuer. Redemptions take tokens out. Net issuance is the difference over a week.</dd>
+      <dt>Treasury mint</dt><dd>Tether often mints a large block into its own treasury and releases it later. I count those tokens only when they leave the treasury.</dd>
+      <dt>Issuance score</dt><dd>A week's supply growth compared with the previous 52 weeks: how far it sits above the typical week, measured in typical deviations.</dd>
+      <dt>Decile</dt><dd>One tenth of the weeks, sorted by issuance score. Decile 10 holds the heaviest issuance weeks.</dd>
+      <dt>Pre-registration</dt><dd>Writing down hypotheses, data rules and pass lines, with a date, before running any test.</dd>
+      <dt>Training and test</dt><dd>I set the threshold on 2021-23 and judged the hypothesis only on 2024-26, which played no part in setting it.</dd>
+      <dt>95% interval</dt><dd>The range of values for the true number that the data supports, at 95% confidence.</dd>
+      <dt>p-value</dt><dd>How often a result at least this strong would show up by chance if the hypothesis were false. I count below 0.05 as a pass.</dd>
+    </dl>
+  </details>
+
+  <h2>What I found</h2>
+
+  <div class="finding">
+    <strong>Heavy issuance did not predict a better week. If anything, the reverse.</strong>
+    In the 20 test weeks with the heaviest issuance, bitcoin returned <span class="num">-1.7%</span> on average the following week. In the other 128 weeks it returned <span class="num">+0.6%</span>. The gap of <span class="num">-2.3</span> percentage points has the wrong sign for the story, and its 95% interval (-4.4 to +0.5) includes zero.
+  </div>
+
+  <figure>
+    <!-- chart:deciles --><svg class="chart" viewBox="0 0 640 330" role="img" aria-label="Average bitcoin return the week after, by decile of weekly stablecoin issuance: 2021-23 training and 2024-26 test"><text x="0" y="12" class="coin">Bitcoin return the week after, %</text><rect x="572.2" y="52" width="59.8" height="228" fill="#f0efec" opacity=".05"/><line x1="34" x2="632" y1="280.0" y2="280.0" class="grid" stroke="#2c2c2a"/><text x="28" y="284.0" class="tick" text-anchor="end">-10</text><line x1="34" x2="632" y1="248.3" y2="248.3" class="grid" stroke="#2c2c2a"/><text x="28" y="252.3" class="tick" text-anchor="end">-7.5</text><line x1="34" x2="632" y1="216.7" y2="216.7" class="grid" stroke="#2c2c2a"/><text x="28" y="220.7" class="tick" text-anchor="end">-5</text><line x1="34" x2="632" y1="185.0" y2="185.0" class="grid" stroke="#2c2c2a"/><text x="28" y="189.0" class="tick" text-anchor="end">-2.5</text><line x1="34" x2="632" y1="121.7" y2="121.7" class="grid" stroke="#2c2c2a"/><text x="28" y="125.7" class="tick" text-anchor="end">2.5</text><line x1="34" x2="632" y1="90.0" y2="90.0" class="grid" stroke="#2c2c2a"/><text x="28" y="94.0" class="tick" text-anchor="end">5</text><line x1="34" x2="632" y1="58.3" y2="58.3" class="grid" stroke="#2c2c2a"/><text x="28" y="62.3" class="tick" text-anchor="end">7.5</text><polygon points="63.9,134.5 123.7,68.2 183.5,115.6 243.3,95.9 303.1,88.0 362.9,124.1 422.7,96.1 482.5,130.1 542.3,150.3 602.1,55.6 602.1,162.9 542.3,272.7 482.5,168.2 422.7,208.8 362.9,190.3 303.1,238.6 243.3,187.4 183.5,156.7 123.7,215.0 63.9,230.4" fill="#3987e5" opacity=".16"/><line x1="34" x2="632" y1="153.3" y2="153.3" class="mid" stroke="#898781" stroke-dasharray="3 3"/><text x="28" y="157.3" class="tick" text-anchor="end">0</text><polyline points="63.9,166.7 123.7,165.4 183.5,145.1 243.3,136.0 303.1,146.8 362.9,149.7 422.7,155.0 482.5,144.7 542.3,202.2 602.1,100.9" fill="none" stroke="#3987e5" stroke-width="2" stroke-linejoin="round"/><circle cx="63.9" cy="166.7" r="3.5" fill="#3987e5"/><circle cx="123.7" cy="165.4" r="3.5" fill="#3987e5"/><circle cx="183.5" cy="145.1" r="3.5" fill="#3987e5"/><circle cx="243.3" cy="136.0" r="3.5" fill="#3987e5"/><circle cx="303.1" cy="146.8" r="3.5" fill="#3987e5"/><circle cx="362.9" cy="149.7" r="3.5" fill="#3987e5"/><circle cx="422.7" cy="155.0" r="3.5" fill="#3987e5"/><circle cx="482.5" cy="144.7" r="3.5" fill="#3987e5"/><circle cx="542.3" cy="202.2" r="3.5" fill="#3987e5"/><circle cx="602.1" cy="100.9" r="3.5" fill="#3987e5"/><line x1="602.1" x2="602.1" y1="143.7" y2="190.9" stroke="#e66767" stroke-width="2"/><line x1="596.1" x2="608.1" y1="143.7" y2="143.7" stroke="#e66767" stroke-width="2"/><line x1="596.1" x2="608.1" y1="190.9" y2="190.9" stroke="#e66767" stroke-width="2"/><rect x="59.4" y="170.8" width="9" height="9" fill="#e66767" transform="rotate(45 63.9 175.3)"/><rect x="119.2" y="165.7" width="9" height="9" fill="#e66767" transform="rotate(45 123.7 170.2)"/><rect x="179.0" y="126.5" width="9" height="9" fill="#e66767" transform="rotate(45 183.5 131.0)"/><rect x="238.8" y="157.9" width="9" height="9" fill="#e66767" transform="rotate(45 243.3 162.4)"/><rect x="298.6" y="135.2" width="9" height="9" fill="#e66767" transform="rotate(45 303.1 139.7)"/><rect x="358.4" y="141.7" width="9" height="9" fill="#e66767" transform="rotate(45 362.9 146.2)"/><rect x="418.2" y="134.1" width="9" height="9" fill="#e66767" transform="rotate(45 422.7 138.6)"/><rect x="478.0" y="100.4" width="9" height="9" fill="#e66767" transform="rotate(45 482.5 104.9)"/><rect x="537.8" y="137.6" width="9" height="9" fill="#e66767" transform="rotate(45 542.3 142.1)"/><rect x="597.6" y="170.1" width="9" height="9" fill="#e66767" transform="rotate(45 602.1 174.6)"/><text x="628.0" y="210.9" class="val" text-anchor="end" fill="#f0efec">Test: -1.7%</text><text x="628.0" y="90.9" class="val" text-anchor="end" fill="#f0efec">Training: +4.1%</text><text x="63.9" y="298" class="tick" text-anchor="middle">1</text><text x="123.7" y="298" class="tick" text-anchor="middle">2</text><text x="183.5" y="298" class="tick" text-anchor="middle">3</text><text x="243.3" y="298" class="tick" text-anchor="middle">4</text><text x="303.1" y="298" class="tick" text-anchor="middle">5</text><text x="362.9" y="298" class="tick" text-anchor="middle">6</text><text x="422.7" y="298" class="tick" text-anchor="middle">7</text><text x="482.5" y="298" class="tick" text-anchor="middle">8</text><text x="542.3" y="298" class="tick" text-anchor="middle">9</text><text x="602.1" y="298" class="tick" text-anchor="middle">10</text><text x="63.9" y="314" class="tick" text-anchor="middle">least issued</text><text x="602.1" y="314" class="tick" text-anchor="middle">most issued</text><g class="legend"><line x1="0" x2="18" y1="32" y2="32" stroke="#3987e5" stroke-width="2"/><circle cx="9" cy="32" r="3.5" fill="#3987e5"/><text x="24" y="36">2021-23, where I set the threshold, with 95% band</text><rect x="387.5" y="27.5" width="9" height="9" fill="#e66767" transform="rotate(45 392 32)"/><text x="404" y="36">2024-26 test</text></g></svg><!-- /chart:deciles -->
+    <figcaption>Weeks sorted into tenths by issuance score, with the cut points fixed on 2021-23. Return runs from the Tuesday after the issuance week to the next Tuesday. The band and the interval on the test top decile come from a bootstrap that keeps runs of four weeks together.</figcaption>
+  </figure>
+
+  <div class="finding">
+    <strong>The signal that showed up in 2021-23 was noise.</strong>
+    On the training years the top decile came out at +4.4 points ahead of the rest, with p&nbsp;=&nbsp;0.04. Taken alone that looks like a finding. But decile 9 sat at -3.9% right next to it, and nothing between deciles 2 and 9 formed a trend. A single spike among ten groups of 16 weeks is what chance produces. Out of sample, it disappeared.
+  </div>
+
+  <div class="finding">
+    <strong>Issuance follows price.</strong>
+    The clearest pattern runs the other way. A 10% bitcoin gain in one week raised the next week's issuance score by about 0.6 in 2024-26 (p&nbsp;=&nbsp;0.006), and the week three back mattered too. Bitcoin's last three weekly returns explain 11% of the swings in issuance. Big mints come after rallies. My guess at why, which I haven't tested: demand for stablecoins to trade with rises once prices are already moving.
+  </div>
+
+  <div class="finding">
+    <strong>My prediction got the verdict right and the size wrong.</strong>
+    Before the test I wrote that the hypothesis would fail, with a gap between -1 and +1 points. It failed, at -2.3. I expected issuance to follow price, and it did.
+  </div>
+
+  <table>
+    <tr><th>Fixed in advance</th><th>Result</th></tr>
+    <tr><td>Top-10% issuance weeks are followed by higher bitcoin returns</td><td>Fails (p&nbsp;=&nbsp;0.94)</td></tr>
+    <tr><td>The effect survives holding this week's and last week's return fixed</td><td>Fails (p&nbsp;=&nbsp;0.34)</td></tr>
+    <tr><td>Prediction: the hypothesis fails, gap between -1 and +1 points</td><td>Fails on size (-2.3)</td></tr>
+    <tr><td>Prediction: past returns explain part of issuance</td><td>Holds</td></tr>
+  </table>
+
+  <h2>How I measured it</h2>
+
+  <h3>Rules first, data second</h3>
+  <p>I committed the hypotheses, variables, pass lines and a list of robustness checks before computing any test statistic, then committed the threshold from 2021-23 separately, also before the test. The test wasn't blind to the market: I know roughly what bitcoin did in 2024-26, and I had seen the issuance series while choosing how to scale it. I had not looked at any return next to issuance in either period.</p>
+
+  <h3>Why a score and not a dollar figure</h3>
+  <p>USDT plus USDC grew from about $4bn to $117bn between January 2020 and January 2022. A growth threshold set on those years picks out zero weeks after 2024, and a dollar threshold drifts the other way as supply grows. So each week is scored against its own previous 52 weeks, using the median and the median absolute deviation. That way the USDC run of March 2023 and the Terra collapse of May 2022 don't distort the scale for a year afterwards.</p>
+
+  <h3>Supply data</h3>
+  <p>Daily circulating supply comes from DefiLlama's free stablecoin API, at the asset level. I don't add up the per-chain series. Several chains appear in them on 12 May 2022 already holding billions, and Tether's chain swaps (burn on Ethereum, mint on Tron) show up as large opposite moves. The asset totals have neither problem. DefiLlama's USDT history before 2020 is incomplete, so the sample starts there and 2020 only feeds the first year's comparison window.</p>
+
+  <h3>Timing</h3>
+  <p>Weeks run Monday to Monday, 00:00 UTC. I don't know at what hour DefiLlama takes the snapshot it dates midnight, so the return window starts one day later, on Tuesday, to avoid counting any of the issuance week inside it.</p>
+
+  <h3>Checks</h3>
+  <p>I listed seven variants before the test. None turned the result positive and significant: USDT alone, USDC alone, a top 20% cut, a raw dollar threshold, smoothed supply, Coinbase prices instead of Binance, and no one-day gap. The last one matters as a warning. Moving the return window by a day takes the gap from -2.3 to +0.1 points. Twenty weeks of bitcoin returns, with a weekly swing of about 6.7%, are that noisy, so I read the negative sign as noise too.</p>
+
+  <h2>What this can't see</h2>
+  <ul>
+    <li>Small effects. With 20 heavy weeks against 128, the test reliably detects only gaps of about 3.5 to 4 points a week. The strong version of the story fails. An edge of half a point a week would not show up here either way.</li>
+    <li>Where the new tokens go. A mint that lands on an exchange and one that sits in a lending pool look the same in supply totals.</li>
+    <li>Other stablecoins. USDe, USDS, DAI and newer coins grow differently, some of them through crypto collateral rather than dollar deposits. I left them out on purpose.</li>
+    <li>Faster horizons. Issuance might lead price by hours, which weekly data can't resolve.</li>
+  </ul>
+  <p>This describes past supply and prices. It is not a recommendation to trade them.</p>
+
+  <h2>What's next</h2>
+  <p>The useful follow-up is flow into exchanges rather than supply. On-chain transfers of new USDT and USDC into exchange wallets would show whether the dollars actually arrive where they could buy bitcoin, and at what hour.</p>
+
+  <footer>Byko Buteyko · <a href="/">More projects</a></footer>
+</main>
+<script src="/hit.js" defer></script>
+</body>
+</html>

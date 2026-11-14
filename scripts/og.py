@@ -1,4 +1,4 @@
-"""Renders the link-preview cards (1200x630) for the home page and the funding, cascade and ETF notes.
+"""Renders the link-preview cards (1200x630) for the home page and the funding, cascade, ETF and stablecoin notes.
 render.py makes the whale note's post images.
 
   pip install resvg-py
@@ -40,6 +40,7 @@ PROJECTS = [
     (OK, "Published", "How much of the whale short is a bet?"),
     (OK, "Published", "Do Hyperliquid longs still pay more than Binance longs?"),
     (OK, "Published", "How much of the bitcoin ETF bid is a basis trade?"),
+    (OK, "Published", "Does stablecoin issuance predict bitcoin?"),
     (WIP, "In progress", "When do Hyperliquid liquidations cascade?"),
 ]
 
@@ -74,12 +75,12 @@ def chart(page, name):
 def home():
     body = [text(72, 132, "Byko Buteyko", 68, INK, 700, spacing=-1),
             *lines(72, 186, ["Market research built from raw data:", "positioning, flows and forced selling."], 30, INK2, gap=1.33)]
-    y = 262
+    y = 250
     for color, label, title in PROJECTS:
-        body += [f'<rect x="72" y="{y}" width="{W - 144}" height="62" rx="12" fill="{SURFACE}" stroke="{LINE}"/>',
-                 *status(94, y + 38, color, label), text(278, y + 40, title, 24, INK, 600),
-                 text(W - 100, y + 40, "→", 24, MUTED, anchor="end")]
-        y += 72
+        body += [f'<rect x="72" y="{y}" width="{W - 144}" height="54" rx="12" fill="{SURFACE}" stroke="{LINE}"/>',
+                 *status(94, y + 34, color, label), text(278, y + 36, title, 24, INK, 600),
+                 text(W - 100, y + 36, "→", 24, MUTED, anchor="end")]
+        y += 62
     # the home card carries its own name at the top, so it skips the footer name
     return frame(body).replace(text(72, H - 34, "Byko Buteyko", 22, MUTED), "")
 
@@ -129,8 +130,19 @@ def etf():
     return frame(body)
 
 
+def stablecoin():
+    vb, inner = chart(ROOT / "research" / "stablecoin-issuance" / "index.html", "deciles")
+    body = [*status(72, 96, OK, "Published"),
+            *lines(72, 160, ["Does a big week of", "stablecoin issuance", "predict bitcoin?"], 46, INK, 700, gap=1.2),
+            *lines(72, 350, ["In the 20 heaviest USDT and USDC", "issuance weeks of 2024-26, bitcoin", "fell 1.7% on average the week after."], 23, INK2, gap=1.45),
+            f'<rect x="620" y="60" width="508" height="480" rx="14" fill="{SURFACE}" stroke="{LINE}"/>',
+            f'<svg class="chart" x="644" y="100" width="460" height="400" viewBox="{vb}">{inner}</svg>']
+    return frame(body)
+
+
 CARDS = {"og.png": home, "research/hyperliquid-whales/og.png": whales, "research/hyperliquid-funding/og.png": funding,
-         "research/hyperliquid-liquidations/og.png": cascades, "research/bitcoin-etf-basis/og.png": etf}
+         "research/hyperliquid-liquidations/og.png": cascades, "research/bitcoin-etf-basis/og.png": etf,
+         "research/stablecoin-issuance/og.png": stablecoin}
 
 if __name__ == "__main__":
     for path, make in CARDS.items():
